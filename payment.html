@@ -1,324 +1,478 @@
 <!doctype html>
 <html lang="th">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>หมูปิ้งบ้านสวน | ชำระเงิน</title>
-<meta name="description" content="สรุปคำสั่งซื้อและชำระเงินผ่านพร้อมเพย์หรือโอนธนาคาร พร้อมกรอกที่อยู่จัดส่ง">
-<link rel="stylesheet" href="css/bootstrap.min.css">
-<link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-
-<nav class="site-navbar navbar navbar-expand-lg" aria-label="เมนูหลัก">
-  <div class="wrap d-flex align-items-center w-100">
-    <a class="navbar-brand" href="index.html"><img class="brand-mark" src="img/logo.jpg" alt="โลโก้ร้านหมูปิ้งบ้านสวน"> หมูปิ้งบ้านสวน</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMain" aria-controls="navMain" aria-expanded="false" aria-label="เปิดเมนู">
-      <span style="color:#F3E7D6;">☰</span>
-    </button>
-    <div class="collapse navbar-collapse justify-content-between" id="navMain">
-      <ul class="navbar-nav mx-lg-auto gap-lg-1 mt-3 mt-lg-0">
-        <li class="nav-item"><a class="nav-link" data-nav="index.html" href="index.html">หน้าแรก</a></li>
-        <li class="nav-item"><a class="nav-link" data-nav="products.html" href="products.html">เมนู/สินค้า</a></li>
-        <li class="nav-item"><a class="nav-link" data-nav="promotions.html" href="promotions.html">โปรโมชัน</a></li>
-        <li class="nav-item"><a class="nav-link" data-nav="payment.html" href="payment.html">ชำระเงิน</a></li>
-        <li class="nav-item"><a class="nav-link" data-nav="reviews.html" href="reviews.html">รีวิว</a></li>
-        <li class="nav-item"><a class="nav-link" data-nav="contact.html" href="contact.html">ติดต่อเรา</a></li>
-      </ul>
-      <div class="mt-3 mt-lg-0">
-        <a href="#" class="cart-pill" data-cart-open>🧺 ตะกร้า <span class="badge rounded-pill" data-cart-count>0</span></a>
-      </div>
-    </div>
-  </div>
-</nav>
-<div class="charcoal-divider"></div>
-
-<header class="hero" style="padding-block:44px 30px;">
-  <div class="wrap">
-    <span class="eyebrow">ขั้นตอนสุดท้าย</span>
-    <h1 class="mt-2" style="font-size:clamp(1.8rem,4vw,2.6rem);">สรุปคำสั่งซื้อ &amp; ชำระเงิน</h1>
-    <p class="lead">ตรวจสอบรายการในตะกร้า เลือกวิธีชำระเงิน แล้วกรอกที่อยู่จัดส่งให้ครบถ้วน</p>
-  </div>
-</header>
-
-<section class="section-tight">
-  <div class="wrap">
-    <div class="row g-4">
-      <!-- ORDER SUMMARY -->
-      <div class="col-lg-5">
-        <div class="panel mb-4">
-          <h2 class="h5">🧾 รายการสั่งซื้อ</h2>
-          <div id="orderItems" class="mt-3"></div>
-          <div class="mt-3">
-            <label class="form-label" for="promoInput">โค้ดส่วนลด</label>
-            <div class="d-flex gap-2">
-              <input type="text" id="promoInput" class="form-control" placeholder="เช่น WELCOME10">
-              <button type="button" class="btn btn-ghost flex-shrink-0" id="applyPromo">ใช้โค้ด</button>
-            </div>
-            <div id="promoMsg" class="example-note mt-2"></div>
-          </div>
-          <hr class="my-3" style="border-color:var(--line);">
-          <div class="summary-row"><span>ยอดสินค้า</span><span id="sumSubtotal">0 บาท</span></div>
-          <div class="summary-row"><span>ค่าส่ง</span><span id="sumShip">20 บาท</span></div>
-          <div class="summary-row"><span>ส่วนลด</span><span id="sumDiscount">−0 บาท</span></div>
-          <div class="summary-row fw-bold" style="font-size:1.1rem;"><span>ยอดรวมสุทธิ</span><span id="sumTotal" class="text-brick">0 บาท</span></div>
-        </div>
-      </div>
-
-      <!-- PAYMENT METHOD + FORM -->
-      <div class="col-lg-7">
-        <div class="panel mb-4">
-          <h2 class="h5">💳 วิธีชำระเงิน</h2>
-          <div class="row g-3 mt-1">
-            <div class="col-sm-6">
-              <div class="method-choice active" data-method="qr" id="choiceQr">
-                <span style="font-size:1.4rem;">📱</span>
-                <div><div class="fw-bold">พร้อมเพย์ (สแกน QR)</div><div class="text-ink-soft" style="font-size:.82rem;">ชำระผ่านแอปธนาคาร</div></div>
-              </div>
-            </div>
-            <div class="col-sm-6">
-              <div class="method-choice" data-method="bank" id="choiceBank">
-                <span style="font-size:1.4rem;">🏦</span>
-                <div><div class="fw-bold">โอนผ่านธนาคาร</div><div class="text-ink-soft" style="font-size:.82rem;">โอนแล้วแนบสลิปให้แอดมิน</div></div>
-              </div>
-            </div>
-          </div>
-
-          <div id="qrPane" class="mt-4 text-center">
-            <div class="qr-box" id="qrGrid"></div>
-            <p class="fw-bold mt-3 mb-0">พร้อมเพย์ (PromptPay)</p>
-            <p class="mb-1">เบอร์: <strong>08X-XXX-XXXX</strong> <span class="badge-example">ตัวอย่าง</span></p>
-            <p class="example-note">กรุณาเปลี่ยนเป็นหมายเลขพร้อมเพย์จริงของร้านก่อนใช้งานจริง</p>
-          </div>
-
-          <div id="bankPane" class="mt-4" style="display:none;">
-            <table class="table hours-table mb-0">
-              <tbody>
-                <tr><th style="width:38%;">ธนาคาร</th><td>ธนาคารกสิกรไทย <span class="badge-example">ตัวอย่าง</span></td></tr>
-                <tr><th>ชื่อบัญชี</th><td>นาง สมหญิง ใจดี</td></tr>
-                <tr><th>เลขที่บัญชี</th><td>XXX-X-XXXXX-X</td></tr>
-                <tr><th>สาขา</th><td>บ้านสวน, ชลบุรี</td></tr>
-              </tbody>
-            </table>
-            <p class="example-note mt-2">กรุณาเปลี่ยนเป็นข้อมูลบัญชีจริงของร้านก่อนใช้งานจริง</p>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <title>หมูปิ้งบ้านสวน | ชำระเงิน</title>
+    <meta
+      name="description"
+      content="สรุปคำสั่งซื้อและชำระเงินผ่านพร้อมเพย์หรือโอนธนาคาร พร้อมกรอกที่อยู่จัดส่ง"
+    />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <nav class="site-navbar navbar navbar-expand-lg" aria-label="เมนูหลัก">
+      <div class="wrap d-flex align-items-center w-100">
+        <a class="navbar-brand" href="index.html"></a>
+          <img
+            class="brand-mark"
+            src="img/logo.jpg"
+            alt="โลโก้ร้านหมูปิ้งบ้านสวน"
+          />
+          หมูปิ้งบ้านสวน</a
+        >
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navMain"
+          aria-controls="navMain"
+          aria-expanded="false"
+          aria-label="เปิดเมนู"
+        >
+          <span style="color: #f3e7d6">☰</span>
+        </button>
+        <div
+          class="collapse navbar-collapse justify-content-between"
+          id="navMain"
+        >
+          <ul class="navbar-nav mx-lg-auto gap-lg-1 mt-3 mt-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" data-nav="index.html" href="index.html"
+                >หน้าแรก</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-nav="products.html" href="products.html"
+                >เมนู/สินค้า</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                data-nav="promotions.html"
+                href="promotions.html"
+                >โปรโมชัน</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-nav="payment.html" href="payment.html"
+                >ชำระเงิน</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-nav="reviews.html" href="reviews.html"
+                >รีวิว</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-nav="contact.html" href="contact.html"
+                >ติดต่อเรา</a
+              >
+            </li>
+          </ul>
+          <div class="mt-3 mt-lg-0">
+            <a href="#" class="cart-pill" data-cart-open
+              >🧺 ตะกร้า
+              <span class="badge rounded-pill" data-cart-count>0</span></a
+            >
           </div>
         </div>
+      </div>
+    </nav>
+    <div class="charcoal-divider"></div>
 
-        <form class="panel" id="deliveryForm" novalidate>
-          <h2 class="h5">🛵 ที่อยู่จัดส่ง</h2>
-          <div class="row g-3 mt-1">
-            <div class="col-sm-6">
-              <label class="form-label" for="custName">ชื่อผู้รับ</label>
-              <input type="text" class="form-control" id="custName" required>
-              <div class="invalid-feedback">กรุณากรอกชื่อผู้รับ</div>
+    <header class="hero" style="padding-block: 44px 30px">
+      <div class="wrap">
+        <span class="eyebrow">ขั้นตอนสุดท้าย</span>
+        <h1 class="mt-2" style="font-size: clamp(1.8rem, 4vw, 2.6rem)">
+          สรุปคำสั่งซื้อ &amp; ชำระเงิน
+        </h1>
+        <p class="lead">
+          ตรวจสอบรายการในตะกร้า เลือกวิธีชำระเงิน
+          แล้วกรอกที่อยู่จัดส่งให้ครบถ้วน
+        </p>
+      </div>
+    </header>
+
+    <section class="section-tight">
+      <div class="wrap">
+        <div class="row g-4">
+          <!-- ORDER SUMMARY -->
+          <div class="col-lg-5">
+            <div class="panel mb-4">
+              <h2 class="h5">🧾 รายการสั่งซื้อ</h2>
+              <div id="orderItems" class="mt-3"></div>
+              <div class="mt-3">
+                <label class="form-label" for="promoInput">โค้ดส่วนลด</label>
+                <div class="d-flex gap-2">
+                  <input
+                    type="text"
+                    id="promoInput"
+                    class="form-control"
+                    placeholder="เช่น WELCOME10"
+                  />
+                  <button
+                    type="button"
+                    class="btn btn-ghost flex-shrink-0"
+                    id="applyPromo"
+                  >
+                    ใช้โค้ด
+                  </button>
+                </div>
+                <div id="promoMsg" class="example-note mt-2"></div>
+              </div>
+              <hr class="my-3" style="border-color: var(--line)" />
+              <div class="summary-row">
+                <span>ยอดสินค้า</span><span id="sumSubtotal">0 บาท</span>
+              </div>
+              <div class="summary-row">
+                <span>ค่าส่ง</span><span id="sumShip">20 บาท</span>
+              </div>
+              <div class="summary-row">
+                <span>ส่วนลด</span><span id="sumDiscount">−0 บาท</span>
+              </div>
+              <div class="summary-row fw-bold" style="font-size: 1.1rem">
+                <span>ยอดรวมสุทธิ</span
+                ><span id="sumTotal" class="text-brick">0 บาท</span>
+              </div>
             </div>
-            <div class="col-sm-6">
-              <label class="form-label" for="custPhone">เบอร์โทรศัพท์</label>
-              <input type="tel" class="form-control" id="custPhone" pattern="[0-9]{9,10}" required>
-              <div class="invalid-feedback">กรุณากรอกเบอร์โทร 9–10 หลัก</div>
-            </div>
-            <div class="col-12">
-              <label class="form-label" for="custAddr">ที่อยู่จัดส่ง</label>
-              <textarea class="form-control" id="custAddr" rows="3" required></textarea>
-              <div class="invalid-feedback">กรุณากรอกที่อยู่จัดส่ง</div>
-            </div>
-            <div class="col-12">
-              <div class="gps-panel" id="gpsPanel">
-                <div class="d-flex flex-wrap align-items-center justify-content-between gap-2">
-                  <div>
-                    <div class="fw-bold">📍 แชร์จุดส่งด้วย GPS</div>
-                    <p class="example-note mb-0" id="gpsStatus" aria-live="polite">ช่วยให้คนส่งหาคุณได้แม่นยำขึ้น พิกัดจะอยู่ในอุปกรณ์นี้เท่านั้น</p>
+          </div>
+
+          <!-- PAYMENT METHOD + FORM -->
+          <div class="col-lg-7">
+            <div class="panel mb-4">
+              <h2 class="h5">💳 วิธีชำระเงิน</h2>
+              <div class="row g-3 mt-1">
+                <div class="col-sm-6">
+                  <div
+                    class="method-choice active"
+                    data-method="qr"
+                    id="choiceQr"
+                  >
+                    <span style="font-size: 1.4rem">📱</span>
+                    <div>
+                      <div class="fw-bold">พร้อมเพย์ (สแกน QR)</div>
+                      <div class="text-ink-soft" style="font-size: 0.82rem">
+                        ชำระผ่านแอปธนาคาร
+                      </div>
+                    </div>
                   </div>
-                  <button type="button" class="btn btn-ghost flex-shrink-0" id="gpsLocate">ใช้ตำแหน่งปัจจุบัน</button>
                 </div>
-                <div class="gps-details" id="gpsDetails" hidden>
-                  <div><span>พิกัด</span><strong id="gpsCoords">—</strong></div>
-                  <div><span>ความแม่นยำ</span><strong id="gpsAccuracy">—</strong></div>
-                  <div><span>อัปเดต</span><strong id="gpsUpdated">—</strong></div>
-                  <a id="gpsMapLink" href="#" target="_blank" rel="noopener" hidden>เปิดจุดส่งในแผนที่ ↗</a>
+                <div class="col-sm-6">
+                  <div class="method-choice" data-method="bank" id="choiceBank">
+                    <span style="font-size: 1.4rem">🏦</span>
+                    <div>
+                      <div class="fw-bold">โอนผ่านธนาคาร</div>
+                      <div class="text-ink-soft" style="font-size: 0.82rem">
+                        โอนแล้วแนบสลิปให้แอดมิน
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <input type="hidden" id="custGps">
+              </div>
+
+              <div id="qrPane" class="mt-4 text-center">
+                <div class="qr-box" id="qrGrid"></div>
+                <p class="fw-bold mt-3 mb-0">พร้อมเพย์ (PromptPay)</p>
+                <p class="mb-1">
+                  เบอร์: <strong>09664174xx</strong>
+                  <span class="badge-example"></span>
+                </p>
+                <p class="mb-0">
+                  ชื่อบัญชี: <strong>นายโสริยา ซุน</strong>
+                  <span class="badge-example"></span>
+              </div>
+
+              <div id="bankPane" class="mt-4" style="display: none">
+                <table class="table hours-table mb-0">
+                  <tbody>
+                    <tr>
+                      <th style="width: 38%">ธนาคาร</th>
+                      <td>
+                        ธนาคารกสิกรไทย
+                      </td>
+                    </tr>
+                    <tr>
+                      <th>ชื่อบัญชี</th>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <th>เลขที่บัญชี</th>
+                      <td>XXX-X-XXXXX-X</td>
+                    </tr>
+                    <tr>
+                      <th>สาขา</th>
+                      <td>บ้านสวน, ชลบุรี</td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
             </div>
-            <div class="col-12">
-              <label class="form-label" for="custNote">หมายเหตุถึงร้าน (ถ้ามี)</label>
-              <input type="text" class="form-control" id="custNote" placeholder="เช่น ไม่ใส่พริก, โทรก่อนส่ง">
-            </div>
+
+            <form class="panel" id="deliveryForm" novalidate>
+              <h2 class="h5">🛵 ที่อยู่จัดส่ง</h2>
+              <div class="row g-3 mt-1">
+                <div class="col-sm-6">
+                  <label class="form-label" for="custName">ชื่อผู้รับ</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="custName"
+                    required
+                  />
+                  <div class="invalid-feedback">กรุณากรอกชื่อผู้รับ</div>
+                </div>
+                <div class="col-sm-6">
+                  <label class="form-label" for="custPhone"
+                    >เบอร์โทรศัพท์</label
+                  >
+                  <input
+                    type="tel"
+                    class="form-control"
+                    id="custPhone"
+                    pattern="[0-9]{9,10}"
+                    required
+                  />
+                  <div class="invalid-feedback">
+                    กรุณากรอกเบอร์โทร 9–10 หลัก
+                  </div>
+                </div>
+                <div class="col-12">
+                  <label class="form-label" for="custAddr">ที่อยู่จัดส่ง</label>
+                  <textarea
+                    class="form-control"
+                    id="custAddr"
+                    rows="3"
+                    required
+                  ></textarea>
+                  <div class="invalid-feedback">กรุณากรอกที่อยู่จัดส่ง</div>
+                </div>
+                <div class="col-12">
+                  <label class="form-label" for="custNote"
+                    >หมายเหตุถึงร้าน (ถ้ามี)</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="custNote"
+                    placeholder="เช่น ไม่ใส่พริก, โทรก่อนส่ง"
+                  />
+                </div>
+              </div>
+              <button type="submit" class="btn btn-brick btn-lg w-100 mt-4">
+                ยืนยันคำสั่งซื้อ
+              </button>
+            </form>
           </div>
-          <button type="submit" class="btn btn-brick btn-lg w-100 mt-4">ยืนยันคำสั่งซื้อ</button>
-          <p class="example-note text-center mt-2 mb-0">เว็บไซต์สาธิต — ยังไม่เชื่อมต่อระบบชำระเงินจริง</p>
-        </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONFIRMATION MODAL -->
+    <div class="modal fade" id="confirmModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div
+          class="modal-content"
+          style="
+            background: var(--paper-raised);
+            color: var(--ink);
+            border-radius: var(--radius);
+            border: 1px solid var(--line);
+          "
+        >
+          <div class="modal-body text-center p-4">
+            <div style="font-size: 3rem">✅</div>
+            <h3 class="mt-2">สั่งซื้อสำเร็จ!</h3>
+            <p class="text-ink-soft">หมายเลขคำสั่งซื้อของคุณคือ</p>
+            <p
+              class="fw-bold text-brick"
+              style="font-size: 1.4rem"
+              id="orderNo"
+            >
+              MP000000
+            </p>
+            <p class="text-ink-soft" style="font-size: 0.9rem">
+              ทางร้านจะติดต่อยืนยันออเดอร์ผ่านเบอร์ที่ให้ไว้ภายใน 15 นาที
+            </p>
+            <button
+              type="button"
+              class="btn btn-brick mt-2"
+              data-bs-dismiss="modal"
+            >
+              เรียบร้อย
+            </button>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</section>
 
-<!-- CONFIRMATION MODAL -->
-<div class="modal fade" id="confirmModal" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content" style="background:var(--paper-raised);color:var(--ink);border-radius:var(--radius);border:1px solid var(--line);">
-      <div class="modal-body text-center p-4">
-        <div style="font-size:3rem;">✅</div>
-        <h3 class="mt-2">สั่งซื้อสำเร็จ!</h3>
-        <p class="text-ink-soft">หมายเลขคำสั่งซื้อของคุณคือ</p>
-        <p class="fw-bold text-brick" style="font-size:1.4rem;" id="orderNo">MP000000</p>
-        <p class="text-ink-soft" style="font-size:.9rem;">ทางร้านจะติดต่อยืนยันออเดอร์ผ่านเบอร์ที่ให้ไว้ภายใน 15 นาที</p>
-        <button type="button" class="btn btn-brick mt-2" data-bs-dismiss="modal">เรียบร้อย</button>
+    <footer class="site-footer">
+      <div class="wrap">
+        <div
+          class="d-flex flex-wrap justify-content-between gap-2"
+          style="font-size: 0.82rem; color: rgba(243, 231, 214, 0.6)"
+        >
+          <span>© 2569 หมูปิ้งบ้านสวน — เว็บไซต์ตัวอย่างสำหรับสาธิต</span>
+          <a href="contact.html">ติดต่อเรา</a>
+        </div>
       </div>
-    </div>
-  </div>
-</div>
+    </footer>
 
-<footer class="site-footer">
-  <div class="wrap">
-    <div class="mb-4" style="font-size:.9rem;">
-      <h5 class="h6">จัดการโดย</h5>
-      <ul class="list-unstyled mb-0" style="color:rgba(243,231,214,.7);">
-        <li>นายโสริยา ซุน 116710905101-7</li>
-        <li>นายณัชพล งามสกุลธิติ 116710905082-9</li>
-        <li>นายสุทิน สวงโท 116710905110-8</li>
-        <li>ปัญญสิริย์ เกียรติภูมิวรากูล 116710905066-2</li>
-      </ul>
-    </div>
-    <div class="d-flex flex-wrap justify-content-between gap-2" style="font-size:.82rem;color:rgba(243,231,214,.6);">
-      <span>© 2569 หมูปิ้งบ้านสวน — เว็บไซต์ตัวอย่างสำหรับสาธิต</span>
-      <a href="contact.html">ติดต่อเรา</a>
-    </div>
-  </div>
-</footer>
+    <div
+      class="cart-drawer-backdrop"
+      id="cartDrawerBackdrop"
+      data-cart-close
+    ></div>
+    <aside class="cart-drawer" id="cartDrawer" aria-label="ตะกร้าสินค้า">
+      <div class="cd-head">
+        <strong>🧺 ตะกร้าของคุณ</strong
+        ><button
+          type="button"
+          class="btn-close"
+          data-cart-close
+          aria-label="ปิด"
+        ></button>
+      </div>
+      <div class="cd-body" id="cartDrawerBody"></div>
+      <div class="cd-foot">
+        <div class="d-flex justify-content-between fw-bold mb-3">
+          <span>ยอดรวม</span><span id="cartDrawerTotal">0 บาท</span>
+        </div>
+        <a href="products.html" class="btn btn-ghost w-100">แก้ไขรายการ</a>
+      </div>
+    </aside>
 
-<div class="cart-drawer-backdrop" id="cartDrawerBackdrop" data-cart-close></div>
-<aside class="cart-drawer" id="cartDrawer" aria-label="ตะกร้าสินค้า">
-  <div class="cd-head"><strong>🧺 ตะกร้าของคุณ</strong><button type="button" class="btn-close" data-cart-close aria-label="ปิด"></button></div>
-  <div class="cd-body" id="cartDrawerBody"></div>
-  <div class="cd-foot">
-    <div class="d-flex justify-content-between fw-bold mb-3"><span>ยอดรวม</span><span id="cartDrawerTotal">0 บาท</span></div>
-    <a href="products.html" class="btn btn-ghost w-100">แก้ไขรายการ</a>
-  </div>
-</aside>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/script.js"></script>
+    <script>
+      var SHIP_FEE = 20;
+      var discount = 0;
+      var freeShip = false;
 
-<script src="js/bootstrap.bundle.min.js"></script>
-<script src="js/script.js"></script>
-<script>
-  var SHIP_FEE = 20;
-  var discount = 0;
-  var freeShip = false;
+      function renderOrder() {
+        var items = MPCart.items;
+        var box = document.getElementById("orderItems");
+        if (items.length === 0) {
+          box.innerHTML =
+            '<p class="text-ink-soft mb-0">ยังไม่มีสินค้าในตะกร้า — <a href="products.html">ไปเลือกเมนู</a></p>';
+        } else {
+          box.innerHTML = items
+            .map(function (i) {
+              return (
+                '<div class="summary-row"><span>' +
+                i.emoji +
+                " " +
+                i.name +
+                " × " +
+                i.qty +
+                "</span><span>" +
+                (i.price * i.qty).toLocaleString("th-TH") +
+                " บ.</span></div>"
+              );
+            })
+            .join("");
+        }
+        var subtotal = MPCart.total();
+        var ship = items.length === 0 ? 0 : freeShip ? 0 : SHIP_FEE;
+        var total = Math.max(0, subtotal + ship - discount);
+        document.getElementById("sumSubtotal").textContent =
+          subtotal.toLocaleString("th-TH") + " บาท";
+        document.getElementById("sumShip").textContent =
+          ship === 0 ? "ฟรี" : ship.toLocaleString("th-TH") + " บาท";
+        document.getElementById("sumDiscount").textContent =
+          "−" + discount.toLocaleString("th-TH") + " บาท";
+        document.getElementById("sumTotal").textContent =
+          total.toLocaleString("th-TH") + " บาท";
+      }
+      renderOrder();
+      document.addEventListener("click", function () {
+        setTimeout(renderOrder, 30);
+      });
 
-  function renderOrder(){
-    var items = MPCart.items;
-    var box = document.getElementById("orderItems");
-    if(items.length === 0){
-      box.innerHTML = '<p class="text-ink-soft mb-0">ยังไม่มีสินค้าในตะกร้า — <a href="products.html">ไปเลือกเมนู</a></p>';
-    } else {
-      box.innerHTML = items.map(function(i){
-        return '<div class="summary-row"><span>'+i.emoji+' '+i.name+' × '+i.qty+'</span><span>'+(i.price*i.qty).toLocaleString("th-TH")+' บ.</span></div>';
-      }).join("");
-    }
-    var subtotal = MPCart.total();
-    var ship = items.length === 0 ? 0 : (freeShip ? 0 : SHIP_FEE);
-    var total = Math.max(0, subtotal + ship - discount);
-    document.getElementById("sumSubtotal").textContent = subtotal.toLocaleString("th-TH") + " บาท";
-    document.getElementById("sumShip").textContent = ship === 0 ? "ฟรี" : ship.toLocaleString("th-TH") + " บาท";
-    document.getElementById("sumDiscount").textContent = "−" + discount.toLocaleString("th-TH") + " บาท";
-    document.getElementById("sumTotal").textContent = total.toLocaleString("th-TH") + " บาท";
-  }
-  renderOrder();
-  document.addEventListener("click", function(){ setTimeout(renderOrder, 30); });
+      document
+        .getElementById("applyPromo")
+        .addEventListener("click", function () {
+          var code = document
+            .getElementById("promoInput")
+            .value.trim()
+            .toUpperCase();
+          var subtotal = MPCart.total();
+          var msg = document.getElementById("promoMsg");
+          discount = 0;
+          freeShip = false;
+          if (code === "WELCOME10") {
+            discount = Math.min(30, Math.round(subtotal * 0.1));
+            msg.textContent =
+              "ใช้โค้ด WELCOME10 สำเร็จ ลด " + discount + " บาท";
+            msg.style.color = "var(--good)";
+          } else if (code === "FREESHIP200") {
+            if (subtotal >= 200) {
+              freeShip = true;
+              msg.textContent = "ใช้โค้ด FREESHIP200 สำเร็จ ส่งฟรี!";
+              msg.style.color = "var(--good)";
+            } else {
+              msg.textContent = "ยอดสั่งซื้อยังไม่ถึง 200 บาท";
+              msg.style.color = "var(--brick-deep)";
+            }
+          } else if (code) {
+            msg.textContent = "ไม่พบโค้ดนี้ กรุณาตรวจสอบอีกครั้ง";
+            msg.style.color = "var(--brick-deep)";
+          } else {
+            msg.textContent = "";
+          }
+          renderOrder();
+        });
 
-  document.getElementById("applyPromo").addEventListener("click", function(){
-    var code = document.getElementById("promoInput").value.trim().toUpperCase();
-    var subtotal = MPCart.total();
-    var msg = document.getElementById("promoMsg");
-    discount = 0; freeShip = false;
-    if(code === "WELCOME10"){
-      discount = Math.min(30, Math.round(subtotal*0.10));
-      msg.textContent = "ใช้โค้ด WELCOME10 สำเร็จ ลด " + discount + " บาท";
-      msg.style.color = "var(--good)";
-    } else if(code === "FREESHIP200"){
-      if(subtotal >= 200){ freeShip = true; msg.textContent = "ใช้โค้ด FREESHIP200 สำเร็จ ส่งฟรี!"; msg.style.color = "var(--good)"; }
-      else { msg.textContent = "ยอดสั่งซื้อยังไม่ถึง 200 บาท"; msg.style.color = "var(--brick-deep)"; }
-    } else if(code){
-      msg.textContent = "ไม่พบโค้ดนี้ กรุณาตรวจสอบอีกครั้ง";
-      msg.style.color = "var(--brick-deep)";
-    } else { msg.textContent = ""; }
-    renderOrder();
-  });
+      /* payment method toggle */
+      document
+        .getElementById("choiceQr")
+        .addEventListener("click", function () {
+          this.classList.add("active");
+          document.getElementById("choiceBank").classList.remove("active");
+          document.getElementById("qrPane").style.display = "";
+          document.getElementById("bankPane").style.display = "none";
+        });
+      document
+        .getElementById("choiceBank")
+        .addEventListener("click", function () {
+          this.classList.add("active");
+          document.getElementById("choiceQr").classList.remove("active");
+          document.getElementById("bankPane").style.display = "";
+          document.getElementById("qrPane").style.display = "none";
+        });
 
-  /* payment method toggle */
-  document.getElementById("choiceQr").addEventListener("click", function(){
-    this.classList.add("active"); document.getElementById("choiceBank").classList.remove("active");
-    document.getElementById("qrPane").style.display = ""; document.getElementById("bankPane").style.display = "none";
-  });
-  document.getElementById("choiceBank").addEventListener("click", function(){
-    this.classList.add("active"); document.getElementById("choiceQr").classList.remove("active");
-    document.getElementById("bankPane").style.display = ""; document.getElementById("qrPane").style.display = "none";
-  });
+      mpBuildFakeQR(document.getElementById("qrGrid"), 7);
 
-  mpBuildFakeQR(document.getElementById("qrGrid"), 7);
-
-  /* GPS stays in this browser session only; no server or map API is needed. */
-  (function(){
-    var button = document.getElementById("gpsLocate");
-    var status = document.getElementById("gpsStatus");
-    var details = document.getElementById("gpsDetails");
-    var coords = document.getElementById("gpsCoords");
-    var accuracy = document.getElementById("gpsAccuracy");
-    var updated = document.getElementById("gpsUpdated");
-    var mapLink = document.getElementById("gpsMapLink");
-    var gpsInput = document.getElementById("custGps");
-    if(!navigator.geolocation){
-      status.textContent = "อุปกรณ์หรือเบราว์เซอร์นี้ไม่รองรับ GPS — กรุณากรอกที่อยู่และจุดสังเกต";
-      button.hidden = true;
-      return;
-    }
-    button.addEventListener("click", function(){
-      button.disabled = true;
-      button.textContent = "กำลังระบุตำแหน่ง…";
-      status.textContent = "กำลังขอพิกัดจากอุปกรณ์ของคุณ";
-      navigator.geolocation.getCurrentPosition(function(position){
-        var latitude = position.coords.latitude.toFixed(6);
-        var longitude = position.coords.longitude.toFixed(6);
-        var meters = Math.round(position.coords.accuracy);
-        var timestamp = new Date(position.timestamp).toLocaleTimeString("th-TH", {hour:"2-digit", minute:"2-digit"});
-        gpsInput.value = latitude + "," + longitude;
-        coords.textContent = latitude + ", " + longitude;
-        accuracy.textContent = "ประมาณ ±" + meters + " เมตร";
-        updated.textContent = timestamp + " น.";
-        mapLink.href = "https://www.google.com/maps?q=" + latitude + "," + longitude;
-        mapLink.hidden = false;
-        details.hidden = false;
-        status.textContent = meters <= 50 ? "บันทึกจุดส่งแล้ว" : "บันทึกพิกัดแล้ว แต่สัญญาณยังไม่แม่นมาก ลองขยับไปใกล้หน้าต่าง";
-        button.disabled = false;
-        button.textContent = "อัปเดตตำแหน่ง";
-      }, function(error){
-        var messages = {
-          1:"คุณยังไม่ได้อนุญาตให้เข้าถึงตำแหน่ง — กรุณากรอกที่อยู่และจุดสังเกต",
-          2:"ไม่พบสัญญาณตำแหน่ง ลองเปิด GPS หรือออกไปบริเวณที่สัญญาณดีขึ้น",
-          3:"ใช้เวลาระบุตำแหน่งนานเกินไป ลองอีกครั้ง"
-        };
-        status.textContent = messages[error.code] || "ระบุตำแหน่งไม่สำเร็จ ลองอีกครั้ง";
-        button.disabled = false;
-        button.textContent = "ลองใช้ตำแหน่งอีกครั้ง";
-      }, {enableHighAccuracy:true, timeout:12000, maximumAge:30000});
-    });
-  })();
-
-  /* delivery form + confirm */
-  var form = document.getElementById("deliveryForm");
-  form.addEventListener("submit", function(e){
-    e.preventDefault();
-    if(MPCart.items.length === 0){ mpToast("กรุณาเลือกสินค้าก่อนสั่งซื้อ"); return; }
-    if(!form.checkValidity()){ form.classList.add("was-validated"); return; }
-    var orderNo = "MP" + Date.now().toString().slice(-6);
-    document.getElementById("orderNo").textContent = orderNo;
-    var modal = new bootstrap.Modal(document.getElementById("confirmModal"));
-    modal.show();
-    MPCart.clear();
-    discount = 0; freeShip = false;
-    renderOrder();
-    form.reset();
-    form.classList.remove("was-validated");
-  });
-</script>
-</body>
+      /* delivery form + confirm */
+      var form = document.getElementById("deliveryForm");
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        if (MPCart.items.length === 0) {
+          mpToast("กรุณาเลือกสินค้าก่อนสั่งซื้อ");
+          return;
+        }
+        if (!form.checkValidity()) {
+          form.classList.add("was-validated");
+          return;
+        }
+        var orderNo = "MP" + Date.now().toString().slice(-6);
+        document.getElementById("orderNo").textContent = orderNo;
+        var modal = new bootstrap.Modal(
+          document.getElementById("confirmModal"),
+        );
+        modal.show();
+        MPCart.clear();
+        discount = 0;
+        freeShip = false;
+        renderOrder();
+        form.reset();
+        form.classList.remove("was-validated");
+      });
+    </script>
+  </body>
 </html>
