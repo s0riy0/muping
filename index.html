@@ -14,7 +14,7 @@
 <nav class="site-navbar navbar navbar-expand-lg" aria-label="เมนูหลัก">
   <div class="wrap d-flex align-items-center w-100">
     <a class="navbar-brand" href="index.html">
-      <span class="brand-mark" aria-hidden="true">🍢</span>
+      <img class="brand-mark" src="img/logo.jpg" alt="โลโก้ร้านหมูปิ้งบ้านสวน">
       หมูปิ้งบ้านสวน
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMain" aria-controls="navMain" aria-expanded="false" aria-label="เปิดเมนู">
@@ -57,10 +57,10 @@
       </div>
       <div class="col-lg-6">
         <div class="hero-art">
+          <img class="hero-photo" src="img/hero-skewers.jpg" alt="หมูปิ้งบ้านสวนปิ้งสดบนเตาถ่าน">
           <div class="grill-lines"></div>
-          <span class="skewer-emoji" style="top:18%;left:14%;">🍢</span>
-          <span class="skewer-emoji" style="top:46%;left:52%;">🍗</span>
-          <span class="skewer-emoji" style="top:68%;left:20%;">🌶️</span>
+          <div class="photo-overlay"></div>
+          <img class="hero-stamp" src="img/logo.jpg" alt="โลโก้ร้านหมูปิ้งบ้านสวน">
           <span class="ember-dot" style="bottom:14%;right:18%;"></span>
           <span class="ember-dot" style="bottom:30%;right:32%;animation-delay:.6s;"></span>
           <span class="ember-dot" style="bottom:20%;right:46%;animation-delay:1.2s;"></span>
@@ -181,7 +181,7 @@
   <div class="wrap">
     <div class="row g-4">
       <div class="col-lg-4">
-        <div class="fbrand mb-2"><span aria-hidden="true">🍢</span> หมูปิ้งบ้านสวน</div>
+        <div class="fbrand mb-2"><img src="img/logo.jpg" alt="โลโก้ร้านหมูปิ้งบ้านสวน"> หมูปิ้งบ้านสวน</div>
         <p class="text-ink-soft" style="color:rgba(243,231,214,.7);font-size:.9rem;">หมูปิ้งสูตรบ้านๆ ปิ้งสดใหม่ทุกไม้ หอมควันไฟถ่านแท้ ส่งตรงถึงบ้านคุณทุกวัน</p>
         <div class="d-flex gap-2 mt-3">
           <a href="contact.html" class="social-dot" aria-label="Facebook">f</a>
@@ -206,7 +206,7 @@
         </ul>
       </div>
       <div class="col-lg-4">
-        <h5 class="h6">ติดต่อ</h5>
+        <h5 class="h6">ติดต่อ (ตัวอย่าง)</h5>
         <ul class="list-unstyled d-flex flex-column gap-2 mt-3" style="font-size:.92rem;">
           <li>📍 168 หมู่ 4 ถ.สุขาภิบาล ต.บ้านสวน อ.เมือง จ.ชลบุรี</li>
           <li>📞 08X-XXX-XXXX</li>
@@ -251,15 +251,15 @@
 <script src="js/script.js"></script>
 <script>
   var featured = [
-    {id:"mp001", name:"หมูปิ้งต้นตำรับ", price:12, emoji:"🍢", desc:"ไม้ละ 12 บาท (สั่งขั้นต่ำ 10 ไม้)"},
-    {id:"gc001", name:"ไก่ย่างน่อง", price:45, emoji:"🍗", desc:"น่องไก่ย่างซอสสูตรบ้านสวน"},
-    {id:"rc001", name:"ข้าวเหนียวมูน", price:15, emoji:"🍚", desc:"หุงจากข้าวเหนียวเขี้ยวงูแท้"},
-    {id:"dp001", name:"น้ำจิ้มแจ่ว", price:5, emoji:"🌶️", desc:"สูตรรสจัดจ้านสไตล์อีสาน"}
+    {id:"mp001", name:"หมูปิ้งต้นตำรับ", price:12, emoji:"🍢", photo:"img/menu-skewers.jpg", desc:"ไม้ละ 12 บาท (สั่งขั้นต่ำ 10 ไม้)"},
+    {id:"gc001", name:"ไก่ย่างน่อง", price:45, emoji:"🍗", photo:"img/menu-chicken.jpg", desc:"น่องไก่ย่างซอสสูตรบ้านสวน"},
+    {id:"rc001", name:"ข้าวเหนียวมูน", price:15, emoji:"🍚", photo:"img/menu-rice.jpg", desc:"หุงจากข้าวเหนียวเขี้ยวงูแท้"},
+    {id:"dp001", name:"น้ำจิ้มแจ่ว", price:5, emoji:"🌶️", photo:"img/menu-dip.jpg", desc:"สูตรรสจัดจ้านสไตล์อีสาน"}
   ];
   document.getElementById("featuredMenu").innerHTML = featured.map(function(p){
     return (
       '<div class="col-sm-6 col-lg-3"><div class="menu-card">'+
-        '<div class="thumb">'+p.emoji+'</div>'+
+        '<div class="thumb">'+(p.photo ? '<img src="'+p.photo+'" alt="'+p.name+'" loading="lazy">' : p.emoji)+'</div>'+
         '<div class="body">'+
           '<h3>'+p.name+'</h3>'+
           '<p class="desc">'+p.desc+'</p>'+

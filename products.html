@@ -12,7 +12,7 @@
 
 <nav class="site-navbar navbar navbar-expand-lg" aria-label="เมนูหลัก">
   <div class="wrap d-flex align-items-center w-100">
-    <a class="navbar-brand" href="index.html"><span class="brand-mark" aria-hidden="true">🍢</span> หมูปิ้งบ้านสวน</a>
+    <a class="navbar-brand" href="index.html"><img class="brand-mark" src="img/logo.jpg" alt="โลโก้ร้านหมูปิ้งบ้านสวน"> หมูปิ้งบ้านสวน</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMain" aria-controls="navMain" aria-expanded="false" aria-label="เปิดเมนู">
       <span style="color:#F3E7D6;">☰</span>
     </button>
@@ -59,7 +59,7 @@
   <div class="wrap">
     <div class="row g-4">
       <div class="col-lg-4">
-        <div class="fbrand mb-2"><span aria-hidden="true">🍢</span> หมูปิ้งบ้านสวน</div>
+        <div class="fbrand mb-2"><img src="img/logo.jpg" alt="โลโก้ร้านหมูปิ้งบ้านสวน"> หมูปิ้งบ้านสวน</div>
         <p style="color:rgba(243,231,214,.7);font-size:.9rem;">หมูปิ้งสูตรบ้านๆ ปิ้งสดใหม่ทุกไม้ หอมควันไฟถ่านแท้ ส่งตรงถึงบ้านคุณทุกวัน</p>
       </div>
       <div class="col-6 col-lg-2">
@@ -79,7 +79,7 @@
         </ul>
       </div>
       <div class="col-lg-4">
-        <h5 class="h6">ติดต่อ</h5>
+        <h5 class="h6">ติดต่อ (ตัวอย่าง)</h5>
         <ul class="list-unstyled d-flex flex-column gap-2 mt-3" style="font-size:.92rem;">
           <li>📍 168 หมู่ 4 ถ.สุขาภิบาล ต.บ้านสวน อ.เมือง จ.ชลบุรี</li>
           <li>📞 08X-XXX-XXXX</li>
@@ -116,18 +116,18 @@
 <script src="js/script.js"></script>
 <script>
   var MENU = [
-    {id:"mp001",cat:"หมูปิ้ง",name:"หมูปิ้งต้นตำรับ",price:12,emoji:"🍢",desc:"หมักสูตรบ้านสวน ปิ้งหอมควันไฟถ่าน (สั่งขั้นต่ำ 10 ไม้)"},
+    {id:"mp001",cat:"หมูปิ้ง",name:"หมูปิ้งต้นตำรับ",price:12,emoji:"🍢",photo:"img/menu-skewers.jpg",desc:"หมักสูตรบ้านสวน ปิ้งหอมควันไฟถ่าน (สั่งขั้นต่ำ 10 ไม้)"},
     {id:"mp002",cat:"หมูปิ้ง",name:"หมูปิ้งสามชั้น",price:15,emoji:"🥓",desc:"คอหมูมันน้อย ปิ้งกรอบนอกนุ่มใน"},
     {id:"mp003",cat:"หมูปิ้ง",name:"หมูปิ้งเสียบตับ",price:15,emoji:"🍖",desc:"ตับหมูคั่วเคล้าเครื่องหมักรสเข้ม"},
     {id:"mp004",cat:"หมูปิ้ง",name:"ลูกชิ้นปิ้ง",price:5,emoji:"🍡",desc:"ลูกชิ้นหมูเด้งๆ ปิ้งจนหอม"},
-    {id:"gc001",cat:"ไก่/เนื้อย่าง",name:"ไก่ย่างน่อง",price:45,emoji:"🍗",desc:"น่องไก่ย่างซอสสูตรบ้านสวน"},
+    {id:"gc001",cat:"ไก่/เนื้อย่าง",name:"ไก่ย่างน่อง",price:45,emoji:"🍗",photo:"img/menu-chicken.jpg",desc:"น่องไก่ย่างซอสสูตรบ้านสวน"},
     {id:"gc002",cat:"ไก่/เนื้อย่าง",name:"ปีกไก่ย่าง",price:20,emoji:"🍗",desc:"ปีกไก่หมักนุ่มย่างเหลืองกรอบ"},
     {id:"gc003",cat:"ไก่/เนื้อย่าง",name:"เนื้อย่างน้ำตก",price:60,emoji:"🥩",desc:"เนื้อย่างหั่นเสิร์ฟพร้อมน้ำจิ้มรสจัด"},
-    {id:"rc001",cat:"ข้าว/เครื่องเคียง",name:"ข้าวเหนียวมูน",price:15,emoji:"🍚",desc:"หุงจากข้าวเหนียวเขี้ยวงูแท้"},
+    {id:"rc001",cat:"ข้าว/เครื่องเคียง",name:"ข้าวเหนียวมูน",price:15,emoji:"🍚",photo:"img/menu-rice.jpg",desc:"หุงจากข้าวเหนียวเขี้ยวงูแท้"},
     {id:"rc002",cat:"ข้าว/เครื่องเคียง",name:"ข้าวเหนียว (ห่อ)",price:10,emoji:"🍙",desc:"ข้าวเหนียวนึ่งร้อนๆ ห่อใบตอง"},
     {id:"rc003",cat:"ข้าว/เครื่องเคียง",name:"ส้มตำไทย",price:40,emoji:"🥗",desc:"ตำสดใหม่ รสแซ่บกำลังดี"},
     {id:"rc004",cat:"ข้าว/เครื่องเคียง",name:"ไข่ต้มยางมะตูม",price:10,emoji:"🥚",desc:"ไข่ต้มยางมะตูมหอมมัน"},
-    {id:"dp001",cat:"น้ำจิ้ม/ซอส",name:"น้ำจิ้มแจ่ว",price:5,emoji:"🌶️",desc:"สูตรรสจัดจ้านสไตล์อีสาน (ถ้วยเล็ก)"},
+    {id:"dp001",cat:"น้ำจิ้ม/ซอส",name:"น้ำจิ้มแจ่ว",price:5,emoji:"🌶️",photo:"img/menu-dip.jpg",desc:"สูตรรสจัดจ้านสไตล์อีสาน (ถ้วยเล็ก)"},
     {id:"dp002",cat:"น้ำจิ้ม/ซอส",name:"น้ำจิ้มสุกี้",price:5,emoji:"🥣",desc:"หอมกระเทียมเจียว รสกลมกล่อม"},
     {id:"dr001",cat:"เครื่องดื่ม",name:"น้ำเปล่า",price:10,emoji:"💧",desc:"ขวดเย็นๆ ดับกระหาย"},
     {id:"dr002",cat:"เครื่องดื่ม",name:"ชาไทยเย็น",price:25,emoji:"🧋",desc:"ชงสดทุกแก้ว หอมมัน"},
@@ -142,7 +142,7 @@
     grid.innerHTML = list.map(function(p){
       return (
         '<div class="col-sm-6 col-lg-4 col-xl-3"><div class="menu-card">'+
-          '<div class="thumb">'+p.emoji+'</div>'+
+          '<div class="thumb">'+(p.photo ? '<img src="'+p.photo+'" alt="'+p.name+'" loading="lazy">' : p.emoji)+'</div>'+
           '<div class="body">'+
             '<span class="badge-example" style="width:fit-content;">'+p.cat+'</span>'+
             '<h3>'+p.name+'</h3>'+
