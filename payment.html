@@ -123,6 +123,24 @@
               <div class="invalid-feedback">กรุณากรอกที่อยู่จัดส่ง</div>
             </div>
             <div class="col-12">
+              <div class="gps-panel" id="gpsPanel">
+                <div class="d-flex flex-wrap align-items-center justify-content-between gap-2">
+                  <div>
+                    <div class="fw-bold">📍 แชร์จุดส่งด้วย GPS</div>
+                    <p class="example-note mb-0" id="gpsStatus" aria-live="polite">ช่วยให้คนส่งหาคุณได้แม่นยำขึ้น พิกัดจะอยู่ในอุปกรณ์นี้เท่านั้น</p>
+                  </div>
+                  <button type="button" class="btn btn-ghost flex-shrink-0" id="gpsLocate">ใช้ตำแหน่งปัจจุบัน</button>
+                </div>
+                <div class="gps-details" id="gpsDetails" hidden>
+                  <div><span>พิกัด</span><strong id="gpsCoords">—</strong></div>
+                  <div><span>ความแม่นยำ</span><strong id="gpsAccuracy">—</strong></div>
+                  <div><span>อัปเดต</span><strong id="gpsUpdated">—</strong></div>
+                  <a id="gpsMapLink" href="#" target="_blank" rel="noopener" hidden>เปิดจุดส่งในแผนที่ ↗</a>
+                </div>
+                <input type="hidden" id="custGps">
+              </div>
+            </div>
+            <div class="col-12">
               <label class="form-label" for="custNote">หมายเหตุถึงร้าน (ถ้ามี)</label>
               <input type="text" class="form-control" id="custNote" placeholder="เช่น ไม่ใส่พริก, โทรก่อนส่ง">
             </div>
@@ -153,6 +171,15 @@
 
 <footer class="site-footer">
   <div class="wrap">
+    <div class="mb-4" style="font-size:.9rem;">
+      <h5 class="h6">จัดการโดย</h5>
+      <ul class="list-unstyled mb-0" style="color:rgba(243,231,214,.7);">
+        <li>นายโสริยา ซุน 116710905101-7</li>
+        <li>นายณัชพล งามสกุลธิติ 116710905082-9</li>
+        <li>นายสุทิน สวงโท 116710905110-8</li>
+        <li>ปัญญสิริย์ เกียรติภูมิวรากูล 116710905066-2</li>
+      </ul>
+    </div>
     <div class="d-flex flex-wrap justify-content-between gap-2" style="font-size:.82rem;color:rgba(243,231,214,.6);">
       <span>© 2569 หมูปิ้งบ้านสวน — เว็บไซต์ตัวอย่างสำหรับสาธิต</span>
       <a href="contact.html">ติดต่อเรา</a>
@@ -228,6 +255,53 @@
   });
 
   mpBuildFakeQR(document.getElementById("qrGrid"), 7);
+
+  /* GPS stays in this browser session only; no server or map API is needed. */
+  (function(){
+    var button = document.getElementById("gpsLocate");
+    var status = document.getElementById("gpsStatus");
+    var details = document.getElementById("gpsDetails");
+    var coords = document.getElementById("gpsCoords");
+    var accuracy = document.getElementById("gpsAccuracy");
+    var updated = document.getElementById("gpsUpdated");
+    var mapLink = document.getElementById("gpsMapLink");
+    var gpsInput = document.getElementById("custGps");
+    if(!navigator.geolocation){
+      status.textContent = "อุปกรณ์หรือเบราว์เซอร์นี้ไม่รองรับ GPS — กรุณากรอกที่อยู่และจุดสังเกต";
+      button.hidden = true;
+      return;
+    }
+    button.addEventListener("click", function(){
+      button.disabled = true;
+      button.textContent = "กำลังระบุตำแหน่ง…";
+      status.textContent = "กำลังขอพิกัดจากอุปกรณ์ของคุณ";
+      navigator.geolocation.getCurrentPosition(function(position){
+        var latitude = position.coords.latitude.toFixed(6);
+        var longitude = position.coords.longitude.toFixed(6);
+        var meters = Math.round(position.coords.accuracy);
+        var timestamp = new Date(position.timestamp).toLocaleTimeString("th-TH", {hour:"2-digit", minute:"2-digit"});
+        gpsInput.value = latitude + "," + longitude;
+        coords.textContent = latitude + ", " + longitude;
+        accuracy.textContent = "ประมาณ ±" + meters + " เมตร";
+        updated.textContent = timestamp + " น.";
+        mapLink.href = "https://www.google.com/maps?q=" + latitude + "," + longitude;
+        mapLink.hidden = false;
+        details.hidden = false;
+        status.textContent = meters <= 50 ? "บันทึกจุดส่งแล้ว" : "บันทึกพิกัดแล้ว แต่สัญญาณยังไม่แม่นมาก ลองขยับไปใกล้หน้าต่าง";
+        button.disabled = false;
+        button.textContent = "อัปเดตตำแหน่ง";
+      }, function(error){
+        var messages = {
+          1:"คุณยังไม่ได้อนุญาตให้เข้าถึงตำแหน่ง — กรุณากรอกที่อยู่และจุดสังเกต",
+          2:"ไม่พบสัญญาณตำแหน่ง ลองเปิด GPS หรือออกไปบริเวณที่สัญญาณดีขึ้น",
+          3:"ใช้เวลาระบุตำแหน่งนานเกินไป ลองอีกครั้ง"
+        };
+        status.textContent = messages[error.code] || "ระบุตำแหน่งไม่สำเร็จ ลองอีกครั้ง";
+        button.disabled = false;
+        button.textContent = "ลองใช้ตำแหน่งอีกครั้ง";
+      }, {enableHighAccuracy:true, timeout:12000, maximumAge:30000});
+    });
+  })();
 
   /* delivery form + confirm */
   var form = document.getElementById("deliveryForm");
