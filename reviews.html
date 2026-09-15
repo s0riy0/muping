@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>หมูปิ้งบ้านสวน | รีวิวจากลูกค้า</title>
+<meta name="description" content="อ่านและเขียนรีวิวหมูปิ้งบ้านสวนจากลูกค้าจริง ให้คะแนนและแสดงความคิดเห็น">
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="site-navbar navbar navbar-expand-lg" aria-label="เมนูหลัก">
+  <div class="wrap d-flex align-items-center w-100">
+    <a class="navbar-brand" href="index.html"><span class="brand-mark" aria-hidden="true">🍢</span> หมูปิ้งบ้านสวน</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMain" aria-controls="navMain" aria-expanded="false" aria-label="เปิดเมนู">
+      <span style="color:#F3E7D6;">☰</span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-between" id="navMain">
+      <ul class="navbar-nav mx-lg-auto gap-lg-1 mt-3 mt-lg-0">
+        <li class="nav-item"><a class="nav-link" data-nav="index.html" href="index.html">หน้าแรก</a></li>
+        <li class="nav-item"><a class="nav-link" data-nav="products.html" href="products.html">เมนู/สินค้า</a></li>
+        <li class="nav-item"><a class="nav-link" data-nav="promotions.html" href="promotions.html">โปรโมชัน</a></li>
+        <li class="nav-item"><a class="nav-link" data-nav="payment.html" href="payment.html">ชำระเงิน</a></li>
+        <li class="nav-item"><a class="nav-link" data-nav="reviews.html" href="reviews.html">รีวิว</a></li>
+        <li class="nav-item"><a class="nav-link" data-nav="contact.html" href="contact.html">ติดต่อเรา</a></li>
+      </ul>
+      <div class="mt-3 mt-lg-0">
+        <a href="#" class="cart-pill" data-cart-open>🧺 ตะกร้า <span class="badge rounded-pill" data-cart-count>0</span></a>
+      </div>
+    </div>
+  </div>
+</nav>
+<div class="charcoal-divider"></div>
+
+<header class="hero" style="padding-block:44px 30px;">
+  <div class="wrap">
+    <span class="eyebrow">เสียงจากลูกค้าจริง</span>
+    <h1 class="mt-2" style="font-size:clamp(1.8rem,4vw,2.6rem);">รีวิว &amp; ความคิดเห็น</h1>
+    <div class="d-flex align-items-center gap-3 mt-2">
+      <span class="stars" id="avgStars">★★★★★</span>
+      <span class="text-ink-soft" id="avgText">กำลังโหลดคะแนน…</span>
+    </div>
+  </div>
+</header>
+
+<section class="section-tight">
+  <div class="wrap">
+    <div class="row g-4">
+      <div class="col-lg-5">
+        <div class="panel" id="reviewFormPanel">
+          <h2 class="h5">เขียนรีวิวของคุณ</h2>
+          <form id="reviewForm" class="mt-3" novalidate>
+            <div class="mb-3">
+              <label class="form-label" for="rvName">ชื่อของคุณ</label>
+              <input type="text" class="form-control" id="rvName" required maxlength="40">
+              <div class="invalid-feedback">กรุณากรอกชื่อ</div>
+            </div>
+            <div class="mb-3">
+              <label class="form-label d-block">ให้คะแนน</label>
+              <div class="star-input" id="starInput"></div>
+            </div>
+            <div class="mb-3">
+              <label class="form-label" for="rvComment">ความคิดเห็น</label>
+              <textarea class="form-control" id="rvComment" rows="4" required maxlength="400" placeholder="บอกเล่าประสบการณ์การกินหมูปิ้งบ้านสวนของคุณ…"></textarea>
+              <div class="invalid-feedback">กรุณากรอกความคิดเห็น</div>
+            </div>
+            <button type="submit" class="btn btn-brick w-100" id="rvSubmitBtn">ส่งรีวิว</button>
+          </form>
+          <p class="example-note mt-3 mb-0" id="dbStatusNote">กำลังเชื่อมต่อระบบรีวิว…</p>
+        </div>
+      </div>
+
+      <div class="col-lg-7">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h2 class="h5 mb-0">รีวิวทั้งหมด <span class="text-ink-soft" id="reviewCount"></span></h2>
+        </div>
+        <div class="row g-4" id="reviewList">
+          <div class="col-12 text-ink-soft">กำลังโหลดรีวิว…</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="d-flex flex-wrap justify-content-between gap-2" style="font-size:.82rem;color:rgba(243,231,214,.6);">
+      <span>© 2569 หมูปิ้งบ้านสวน — เว็บไซต์ตัวอย่างสำหรับสาธิต</span>
+      <a href="index.html">กลับหน้าแรก</a>
+    </div>
+  </div>
+</footer>
+
+<div class="cart-drawer-backdrop" id="cartDrawerBackdrop" data-cart-close></div>
+<aside class="cart-drawer" id="cartDrawer" aria-label="ตะกร้าสินค้า">
+  <div class="cd-head"><strong>🧺 ตะกร้าของคุณ</strong><button type="button" class="btn-close" data-cart-close aria-label="ปิด"></button></div>
+  <div class="cd-body" id="cartDrawerBody"></div>
+  <div class="cd-foot">
+    <div class="d-flex justify-content-between fw-bold mb-3"><span>ยอดรวม</span><span id="cartDrawerTotal">0 บาท</span></div>
+    <a href="payment.html" class="btn btn-brick w-100">ไปหน้าชำระเงิน</a>
+  </div>
+</aside>
+
+<script src="js/bootstrap.bundle.min.js"></script>
+<script src="js/script.js"></script>
+<script>
+  var starWidget = mpBuildStarInput(document.getElementById("starInput"));
+
+  var FALLBACK_REVIEWS = [
+    {name:"คุณน้ำผึ้ง", rating:5, comment:"หมูปิ้งนุ่มหอม ไม่มันเลี่ยน สั่งประจำทุกสัปดาห์ค่ะ", createdAt:"2026-08-20T10:00:00.000Z"},
+    {name:"คุณต้น", rating:5, comment:"ข้าวเหนียวมูนอร่อยมาก ส่งไวกว่าที่คิดครับ", createdAt:"2026-08-18T10:00:00.000Z"},
+    {name:"คุณปุ้ย", rating:4, comment:"น้ำจิ้มแจ่วรสจัดกำลังดี ชอบมากค่ะ จะสั่งอีก", createdAt:"2026-08-15T10:00:00.000Z"}
+  ];
+
+  function fmtDate(iso){
+    try{
+      var d = new Date(iso);
+      return d.toLocaleDateString("th-TH", {year:"numeric", month:"short", day:"numeric"});
+    }catch(e){ return ""; }
+  }
+  function starStr(n){ return "★★★★★☆☆☆☆☆".slice(5-n, 10-n); }
+
+  function renderReviews(list, opts){
+    opts = opts || {};
+    var box = document.getElementById("reviewList");
+    var countEl = document.getElementById("reviewCount");
+    if(list.length === 0){
+      box.innerHTML = '<div class="col-12 text-ink-soft">ยังไม่มีรีวิว — เป็นคนแรกที่เขียนรีวิวให้ร้านสิ! 🎉</div>';
+    } else {
+      box.innerHTML = list.map(function(r){
+        var initial = (r.name || "?").trim().charAt(0) || "?";
+        return (
+          '<div class="col-md-6"><div class="review-card">'+
+            '<div class="d-flex align-items-center gap-3 mb-2">'+
+              '<div class="avatar-badge">'+initial+'</div>'+
+              '<div><div class="fw-semibold">'+(r.name||"ลูกค้า")+'</div><div class="stars">'+starStr(r.rating||5)+'</div></div>'+
+            '</div>'+
+            '<p class="mb-1 text-ink-soft">'+(r.comment||"")+'</p>'+
+            '<div class="example-note">'+fmtDate(r.createdAt)+'</div>'+
+          '</div></div>'
+        );
+      }).join("");
+    }
+    countEl.textContent = "(" + list.length + (opts.exampleData ? " รายการตัวอย่าง" : " รายการ") + ")";
+    var avg = list.length ? (list.reduce(function(s,r){ return s+(r.rating||0); },0)/list.length) : 0;
+    document.getElementById("avgStars").textContent = list.length ? starStr(Math.round(avg)) : "☆☆☆☆☆";
+    document.getElementById("avgText").textContent = list.length ? (avg.toFixed(1)+" จาก 5 ("+list.length+" รีวิว)") : "ยังไม่มีคะแนน";
+  }
+
+  renderReviews(FALLBACK_REVIEWS, {exampleData:true});
+
+  var dbReady = false;
+  var reviewsCol = null;
+
+  (async function initDb(){
+    var db = null;
+    try{ db = await claude.use("db"); }catch(e){ db = null; }
+    var statusNote = document.getElementById("dbStatusNote");
+    if(!db){
+      statusNote.textContent = "ระบบรีวิวออนไลน์ไม่พร้อมใช้งานในมุมมองนี้ — แสดงรีวิวตัวอย่างไว้ก่อน";
+      document.getElementById("reviewForm").style.display = "none";
+      return;
+    }
+    dbReady = true;
+    reviewsCol = db.collection("reviews");
+    statusNote.textContent = "รีวิวของทุกคนจะแสดงผลแบบเรียลไทม์ให้ผู้เข้าชมทุกคนเห็น";
+    reviewsCol.orderBy("createdAt","desc").limit(50).onSnapshot(function(snap){
+      var list = snap.docs.map(function(d){ return d.data(); }).filter(Boolean);
+      if(list.length === 0){ list = FALLBACK_REVIEWS; renderReviews(list, {exampleData:true}); }
+      else { renderReviews(list); }
+    }, function(err){
+      statusNote.textContent = "ไม่สามารถโหลดรีวิวสดได้ในขณะนี้ (" + err.code + ") — แสดงรีวิวตัวอย่างไว้ก่อน";
+    });
+  })();
+
+  var rf = document.getElementById("reviewForm");
+  rf.addEventListener("submit", async function(e){
+    e.preventDefault();
+    if(!rf.checkValidity()){ rf.classList.add("was-validated"); return; }
+    if(!dbReady || !reviewsCol){ mpToast("ระบบรีวิวยังไม่พร้อม กรุณาลองใหม่ภายหลัง"); return; }
+    var btn = document.getElementById("rvSubmitBtn");
+    btn.disabled = true; btn.textContent = "กำลังส่ง…";
+    try{
+      await reviewsCol.add({
+        name: document.getElementById("rvName").value.trim().slice(0,40),
+        rating: starWidget.get(),
+        comment: document.getElementById("rvComment").value.trim().slice(0,400),
+        createdAt: new Date().toISOString()
+      });
+      mpToast("ขอบคุณสำหรับรีวิวค่ะ/ครับ! 🙏");
+      rf.reset();
+      rf.classList.remove("was-validated");
+      starWidget.set(5);
+    }catch(err){
+      mpToast("ส่งรีวิวไม่สำเร็จ กรุณาลองใหม่อีกครั้ง");
+    }
+    btn.disabled = false; btn.textContent = "ส่งรีวิว";
+  });
+</script>
+</body>
+</html>

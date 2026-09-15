@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>หมูปิ้งบ้านสวน | เมนู/สินค้า</title>
+<meta name="description" content="เมนูหมูปิ้งบ้านสวนครบทุกรายการพร้อมราคา หมูปิ้ง ไก่ย่าง ข้าวเหนียว น้ำจิ้ม และเครื่องดื่ม">
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="site-navbar navbar navbar-expand-lg" aria-label="เมนูหลัก">
+  <div class="wrap d-flex align-items-center w-100">
+    <a class="navbar-brand" href="index.html"><span class="brand-mark" aria-hidden="true">🍢</span> หมูปิ้งบ้านสวน</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMain" aria-controls="navMain" aria-expanded="false" aria-label="เปิดเมนู">
+      <span style="color:#F3E7D6;">☰</span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-between" id="navMain">
+      <ul class="navbar-nav mx-lg-auto gap-lg-1 mt-3 mt-lg-0">
+        <li class="nav-item"><a class="nav-link" data-nav="index.html" href="index.html">หน้าแรก</a></li>
+        <li class="nav-item"><a class="nav-link" data-nav="products.html" href="products.html">เมนู/สินค้า</a></li>
+        <li class="nav-item"><a class="nav-link" data-nav="promotions.html" href="promotions.html">โปรโมชัน</a></li>
+        <li class="nav-item"><a class="nav-link" data-nav="payment.html" href="payment.html">ชำระเงิน</a></li>
+        <li class="nav-item"><a class="nav-link" data-nav="reviews.html" href="reviews.html">รีวิว</a></li>
+        <li class="nav-item"><a class="nav-link" data-nav="contact.html" href="contact.html">ติดต่อเรา</a></li>
+      </ul>
+      <div class="mt-3 mt-lg-0">
+        <a href="#" class="cart-pill" data-cart-open>🧺 ตะกร้า <span class="badge rounded-pill" data-cart-count>0</span></a>
+      </div>
+    </div>
+  </div>
+</nav>
+<div class="charcoal-divider"></div>
+
+<header class="hero" style="padding-block:44px 30px;">
+  <div class="wrap">
+    <span class="eyebrow">เมนูทั้งหมด</span>
+    <h1 class="mt-2" style="font-size:clamp(1.8rem,4vw,2.6rem);">สินค้า &amp; รายการเมนู</h1>
+    <p class="lead">เลือกเมนูที่ชอบ ใส่ตะกร้า แล้วไปหน้าชำระเงินได้เลย ราคาต่อหน่วยตามที่ระบุในแต่ละรายการ</p>
+  </div>
+</header>
+
+<section class="section-tight">
+  <div class="wrap">
+    <div class="d-flex flex-wrap gap-2 mb-4" id="categoryPills">
+      <button type="button" class="category-pill active" data-cat="all">ทั้งหมด</button>
+      <button type="button" class="category-pill" data-cat="หมูปิ้ง">หมูปิ้ง</button>
+      <button type="button" class="category-pill" data-cat="ไก่/เนื้อย่าง">ไก่/เนื้อย่าง</button>
+      <button type="button" class="category-pill" data-cat="ข้าว/เครื่องเคียง">ข้าว/เครื่องเคียง</button>
+      <button type="button" class="category-pill" data-cat="น้ำจิ้ม/ซอส">น้ำจิ้ม/ซอส</button>
+      <button type="button" class="category-pill" data-cat="เครื่องดื่ม">เครื่องดื่ม</button>
+    </div>
+    <div class="row g-4" id="menuGrid"></div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="row g-4">
+      <div class="col-lg-4">
+        <div class="fbrand mb-2"><span aria-hidden="true">🍢</span> หมูปิ้งบ้านสวน</div>
+        <p style="color:rgba(243,231,214,.7);font-size:.9rem;">หมูปิ้งสูตรบ้านๆ ปิ้งสดใหม่ทุกไม้ หอมควันไฟถ่านแท้ ส่งตรงถึงบ้านคุณทุกวัน</p>
+      </div>
+      <div class="col-6 col-lg-2">
+        <h5 class="h6">เมนู</h5>
+        <ul class="list-unstyled d-flex flex-column gap-2 mt-3">
+          <li><a href="index.html">หน้าแรก</a></li>
+          <li><a href="products.html">สินค้า</a></li>
+          <li><a href="promotions.html">โปรโมชัน</a></li>
+          <li><a href="reviews.html">รีวิว</a></li>
+        </ul>
+      </div>
+      <div class="col-6 col-lg-2">
+        <h5 class="h6">บริการ</h5>
+        <ul class="list-unstyled d-flex flex-column gap-2 mt-3">
+          <li><a href="payment.html">วิธีชำระเงิน</a></li>
+          <li><a href="contact.html">ติดต่อเรา</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-4">
+        <h5 class="h6">ติดต่อ</h5>
+        <ul class="list-unstyled d-flex flex-column gap-2 mt-3" style="font-size:.92rem;">
+          <li>📍 168 หมู่ 4 ถ.สุขาภิบาล ต.บ้านสวน อ.เมือง จ.ชลบุรี</li>
+          <li>📞 08X-XXX-XXXX</li>
+        </ul>
+      </div>
+    </div>
+    <hr class="footer-line my-4">
+    <div class="d-flex flex-wrap justify-content-between gap-2" style="font-size:.82rem;color:rgba(243,231,214,.6);">
+      <span>© 2569 หมูปิ้งบ้านสวน — เว็บไซต์ตัวอย่างสำหรับสาธิต</span>
+    </div>
+  </div>
+</footer>
+
+<div class="cart-drawer-backdrop" id="cartDrawerBackdrop" data-cart-close></div>
+<aside class="cart-drawer" id="cartDrawer" aria-label="ตะกร้าสินค้า">
+  <div class="cd-head"><strong>🧺 ตะกร้าของคุณ</strong><button type="button" class="btn-close" data-cart-close aria-label="ปิด"></button></div>
+  <div class="cd-body" id="cartDrawerBody"></div>
+  <div class="cd-foot">
+    <div class="d-flex justify-content-between fw-bold mb-3"><span>ยอดรวม</span><span id="cartDrawerTotal">0 บาท</span></div>
+    <a href="payment.html" class="btn btn-brick w-100">ไปหน้าชำระเงิน</a>
+  </div>
+</aside>
+
+<script src="js/bootstrap.bundle.min.js"></script>
+<script src="js/script.js"></script>
+<script>
+  var MENU = [
+    {id:"mp001",cat:"หมูปิ้ง",name:"หมูปิ้งต้นตำรับ",price:12,emoji:"🍢",desc:"หมักสูตรบ้านสวน ปิ้งหอมควันไฟถ่าน (สั่งขั้นต่ำ 10 ไม้)"},
+    {id:"mp002",cat:"หมูปิ้ง",name:"หมูปิ้งสามชั้น",price:15,emoji:"🥓",desc:"คอหมูมันน้อย ปิ้งกรอบนอกนุ่มใน"},
+    {id:"mp003",cat:"หมูปิ้ง",name:"หมูปิ้งเสียบตับ",price:15,emoji:"🍖",desc:"ตับหมูคั่วเคล้าเครื่องหมักรสเข้ม"},
+    {id:"mp004",cat:"หมูปิ้ง",name:"ลูกชิ้นปิ้ง",price:5,emoji:"🍡",desc:"ลูกชิ้นหมูเด้งๆ ปิ้งจนหอม"},
+    {id:"gc001",cat:"ไก่/เนื้อย่าง",name:"ไก่ย่างน่อง",price:45,emoji:"🍗",desc:"น่องไก่ย่างซอสสูตรบ้านสวน"},
+    {id:"gc002",cat:"ไก่/เนื้อย่าง",name:"ปีกไก่ย่าง",price:20,emoji:"🍗",desc:"ปีกไก่หมักนุ่มย่างเหลืองกรอบ"},
+    {id:"gc003",cat:"ไก่/เนื้อย่าง",name:"เนื้อย่างน้ำตก",price:60,emoji:"🥩",desc:"เนื้อย่างหั่นเสิร์ฟพร้อมน้ำจิ้มรสจัด"},
+    {id:"rc001",cat:"ข้าว/เครื่องเคียง",name:"ข้าวเหนียวมูน",price:15,emoji:"🍚",desc:"หุงจากข้าวเหนียวเขี้ยวงูแท้"},
+    {id:"rc002",cat:"ข้าว/เครื่องเคียง",name:"ข้าวเหนียว (ห่อ)",price:10,emoji:"🍙",desc:"ข้าวเหนียวนึ่งร้อนๆ ห่อใบตอง"},
+    {id:"rc003",cat:"ข้าว/เครื่องเคียง",name:"ส้มตำไทย",price:40,emoji:"🥗",desc:"ตำสดใหม่ รสแซ่บกำลังดี"},
+    {id:"rc004",cat:"ข้าว/เครื่องเคียง",name:"ไข่ต้มยางมะตูม",price:10,emoji:"🥚",desc:"ไข่ต้มยางมะตูมหอมมัน"},
+    {id:"dp001",cat:"น้ำจิ้ม/ซอส",name:"น้ำจิ้มแจ่ว",price:5,emoji:"🌶️",desc:"สูตรรสจัดจ้านสไตล์อีสาน (ถ้วยเล็ก)"},
+    {id:"dp002",cat:"น้ำจิ้ม/ซอส",name:"น้ำจิ้มสุกี้",price:5,emoji:"🥣",desc:"หอมกระเทียมเจียว รสกลมกล่อม"},
+    {id:"dr001",cat:"เครื่องดื่ม",name:"น้ำเปล่า",price:10,emoji:"💧",desc:"ขวดเย็นๆ ดับกระหาย"},
+    {id:"dr002",cat:"เครื่องดื่ม",name:"ชาไทยเย็น",price:25,emoji:"🧋",desc:"ชงสดทุกแก้ว หอมมัน"},
+    {id:"dr003",cat:"เครื่องดื่ม",name:"น้ำอัดลม",price:15,emoji:"🥤",desc:"เลือกได้ทั้งโค้กและสไปรท์"}
+  ];
+  var qty = {};
+  MENU.forEach(function(p){ qty[p.id] = 1; });
+
+  function renderGrid(filter){
+    var grid = document.getElementById("menuGrid");
+    var list = filter === "all" ? MENU : MENU.filter(function(p){ return p.cat === filter; });
+    grid.innerHTML = list.map(function(p){
+      return (
+        '<div class="col-sm-6 col-lg-4 col-xl-3"><div class="menu-card">'+
+          '<div class="thumb">'+p.emoji+'</div>'+
+          '<div class="body">'+
+            '<span class="badge-example" style="width:fit-content;">'+p.cat+'</span>'+
+            '<h3>'+p.name+'</h3>'+
+            '<p class="desc">'+p.desc+'</p>'+
+            '<div class="row-bottom">'+
+              '<span class="price-tag">'+p.price+' บ.</span>'+
+              '<div class="qty-add">'+
+                '<button type="button" data-qty="dec" data-id="'+p.id+'">−</button>'+
+                '<input type="text" readonly id="q-'+p.id+'" value="'+qty[p.id]+'">'+
+                '<button type="button" data-qty="inc" data-id="'+p.id+'">+</button>'+
+              '</div>'+
+            '</div>'+
+            '<button type="button" class="add-btn justify-content-center mt-1" data-id="'+p.id+'">+ เพิ่มลงตะกร้า</button>'+
+          '</div>'+
+        '</div></div>'
+      );
+    }).join("");
+  }
+  renderGrid("all");
+
+  document.getElementById("categoryPills").addEventListener("click", function(e){
+    var b = e.target.closest("[data-cat]");
+    if(!b) return;
+    document.querySelectorAll("#categoryPills .category-pill").forEach(function(x){ x.classList.remove("active"); });
+    b.classList.add("active");
+    renderGrid(b.dataset.cat);
+  });
+
+  document.getElementById("menuGrid").addEventListener("click", function(e){
+    var stepper = e.target.closest("[data-qty]");
+    if(stepper){
+      var id = stepper.dataset.id;
+      if(stepper.dataset.qty === "inc") qty[id]++;
+      else qty[id] = Math.max(1, qty[id]-1);
+      document.getElementById("q-"+id).value = qty[id];
+      return;
+    }
+    var addBtn = e.target.closest(".add-btn");
+    if(addBtn){
+      var p = MENU.find(function(x){ return x.id === addBtn.dataset.id; });
+      MPCart.add({id:p.id,name:p.name,price:p.price,emoji:p.emoji}, qty[p.id]);
+      addBtn.textContent = "เพิ่มแล้ว ✓";
+      addBtn.classList.add("added");
+      mpToast(p.name + " x" + qty[p.id] + " ถูกเพิ่มลงตะกร้าแล้ว");
+      setTimeout(function(){ addBtn.textContent = "+ เพิ่มลงตะกร้า"; addBtn.classList.remove("added"); }, 1200);
+      qty[p.id] = 1;
+      var qi = document.getElementById("q-"+p.id); if(qi) qi.value = 1;
+    }
+  });
+</script>
+</body>
+</html>
