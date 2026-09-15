@@ -419,6 +419,7 @@ a{color:var(--brick-deep);}
 .gps-details a{grid-column:1/-1;font-weight:700;font-size:.86rem;}
 @media (max-width:576px){.gps-details{grid-template-columns:1fr;}}
 
+.hours-table{--bs-table-bg:transparent;--bs-table-color:var(--ink);}
 .hours-table td,.hours-table th{border-color:var(--line)!important;color:var(--ink);padding:.55rem .3rem;}
 .map-art{
   border-radius:var(--radius);overflow:hidden;position:relative;min-height:260px;
