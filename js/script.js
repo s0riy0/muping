@@ -134,6 +134,64 @@
     });
   }
 
+  /* ---------- shared footer ---------- */
+  function syncFooter(){
+    var footer = document.querySelector("footer.site-footer");
+    if(!footer) return;
+    footer.innerHTML = `
+  <div class="wrap">
+    <div class="row g-4">
+      <div class="col-lg-4">
+        <div class="fbrand mb-2"><img src="img/logo.jpg" alt="โลโก้ร้านหมูปิ้งบ้านสวน"> หมูปิ้งบ้านสวน</div>
+        <p class="text-ink-soft" style="color:rgba(243,231,214,.7);font-size:.9rem;">หมูปิ้งสูตรบ้านๆ ปิ้งสดใหม่ทุกไม้ หอมควันไฟถ่านแท้ ส่งตรงถึงบ้านคุณทุกวัน</p>
+        <div class="d-flex gap-2 mt-3">
+          <a href="contact.html" class="social-dot" aria-label="Facebook">f</a>
+          <a href="contact.html" class="social-dot" aria-label="LINE">L</a>
+          <a href="contact.html" class="social-dot" aria-label="Instagram">IG</a>
+        </div>
+      </div>
+      <div class="col-6 col-lg-2">
+        <h5 class="h6">เมนู</h5>
+        <ul class="list-unstyled d-flex flex-column gap-2 mt-3">
+          <li><a href="index.html">หน้าแรก</a></li>
+          <li><a href="products.html">สินค้า</a></li>
+          <li><a href="promotions.html">โปรโมชัน</a></li>
+          <li><a href="reviews.html">รีวิว</a></li>
+        </ul>
+      </div>
+      <div class="col-6 col-lg-2">
+        <h5 class="h6">บริการ</h5>
+        <ul class="list-unstyled d-flex flex-column gap-2 mt-3">
+          <li><a href="payment.html">วิธีชำระเงิน</a></li>
+          <li><a href="contact.html">ติดต่อเรา</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-4">
+        <h5 class="h6">ติดต่อ (ตัวอย่าง)</h5>
+        <ul class="list-unstyled d-flex flex-column gap-2 mt-3" style="font-size:.92rem;">
+          <li>📍 39 หมู่ 1 ถนนรังสิต-นครนายก ตำบลคลองหก อำเภอคลองหลวง จังหวัดปทุมธานี 12120</li>
+          <li>📞 098-369-0789</li>
+          <li>🕒 เปิดทุกวัน จันทร์–เสาร์ 15:00–22:00 น.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="mt-4" style="font-size:.9rem;">
+      <h5 class="h6">จัดการโดย</h5>
+      <ul class="list-unstyled mb-0" style="color:rgba(243,231,214,.7);">
+        <li>นายโสริยา ซุน 116710905101-7</li>
+        <li>นายณัชพล งามสกุลธิติ 116710905082-9</li>
+        <li>นายสุทิน สวงโท 116710905110-8</li>
+        <li>ปัญญสิริย์ เกียรติภูมิวรากูล 116710905066-2</li>
+      </ul>
+    </div>
+    <hr class="footer-line my-4">
+    <div class="d-flex flex-wrap justify-content-between gap-2" style="font-size:.82rem;color:rgba(243,231,214,.6);">
+      <span>© 2569 หมูปิ้งบ้านสวน — เว็บไซต์ตัวอย่างสำหรับสาธิต</span>
+      <span>ทำด้วย ❤️ และควันไฟถ่าน</span>
+    </div>
+  </div>`;
+  }
+
   /* ---------- star input builder ---------- */
   window.mpBuildStarInput = function(container, onChange){
     var value = 5;
@@ -212,6 +270,7 @@
 
   document.addEventListener("DOMContentLoaded", function(){
     markActiveNav();
+    syncFooter();
     Cart.renderBadge();
     Cart.renderDrawer();
     var closers = document.querySelectorAll("[data-cart-close]");
